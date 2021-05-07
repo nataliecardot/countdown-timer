@@ -30,7 +30,6 @@ function timer(seconds) {
   (lateTotalSecs = 0), (lateHours = 0), (lateMins = 0), (lateSecs = 0);
   // Reset timer text to say 'ends' for end time
   endsOrEnded = 'Ends';
-  // Change late time to display none
   lateBy.textContent = '';
   const initialTime = Date.now();
   // Seconds is multiplied by 1000 first (to convert to milliseconds)
@@ -75,6 +74,7 @@ function displayTimeLeft(seconds) {
     remainderSeconds < 10 ? '0' : ''
   }${remainderSeconds}`;
   document.title = display;
+  timerDisplay.style.display = 'block';
   timerDisplay.textContent = display;
 }
 
@@ -85,6 +85,7 @@ function displayEndTime(endTimestamp) {
   const hour = end.getHours();
   const adjustedHour = hour > 12 ? hour - 12 : hour;
   const minutes = end.getMinutes();
+  endTime.style.display = 'block';
   endTime.textContent = `${endsOrEnded} at ${adjustedHour}:${
     minutes < 10 ? '0' : ''
   }${minutes}`;
