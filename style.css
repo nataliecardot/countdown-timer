@@ -45,7 +45,7 @@ body {
 }
 
 form {
-  width: 155px;
+  width: 150px;
 }
 
 .overlay {
@@ -62,7 +62,7 @@ form {
 .timer__controls input {
   flex: 1;
   border: 0;
-  padding: 2rem;
+  padding: 1rem;
   outline: 0;
   color: #1976d2;
   border-radius: 5px;
