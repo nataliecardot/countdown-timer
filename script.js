@@ -1,8 +1,11 @@
 let countdown;
 const timerDisplay = document.querySelector('.display__time-left');
-const endTime = document.querySelector('display__end-time');
+const endTime = document.querySelector('.display__end-time');
+const buttons = document.querySelectorAll('[data-time]');
 
 function timer(seconds) {
+  // Clear any existing timer
+  clearInterval(countdown);
   const initialTime = Date.now();
   // Seconds is multiplied by 1000 first (to convert to milliseconds)
   const stopTime = initialTime + seconds * 1000;
@@ -35,9 +38,25 @@ function displayEndTime(endTimestamp) {
   // Turn it into date
   const end = new Date(endTimestamp);
   const hour = end.getHours();
-  adjustedHour = hour > 12 ? hour - 12 : hour;
+  const adjustedHour = hour > 12 ? hour - 12 : hour;
   const minutes = end.getMinutes();
   endTime.textContent = `Be back at ${adjustedHour}:${
     minutes < 10 ? '0' : ''
   }${minutes}`;
 }
+
+function startTimer() {
+  const seconds = parseInt(this.dataset.time);
+  timer(seconds);
+}
+
+buttons.forEach((button) => button.addEventListener('click', startTimer));
+// customForm is value for name attribute of custom timer form
+document.customForm.addEventListener('submit', function (e) {
+  // Prevent page reload and sending data over a GET request
+  e.preventDefault();
+  // You can chain name attribute value properties: customForm.minutes to grab input with name of minutes inside form with name of customForm
+  const mins = this.minutes.value;
+  timer(mins * 60);
+  this.reset();
+});
