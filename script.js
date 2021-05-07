@@ -7,11 +7,13 @@ const endAlert = new Audio('chime.mp3');
 const volumeOn = document.querySelector('.fa-volume-up');
 const volumeMute = document.querySelector('.fa-volume-mute');
 
-// if (volumeOn.style.display == 'none') {
-//   console.log('true');
-//   endAlert.muted = true;
-// }
-endAlert.muted = true;
+const style = getComputedStyle(volumeOn, null).display;
+// console.log(currentStyle);
+if (style == 'none') {
+  console.log('true');
+  endAlert.muted = true;
+  // console.log(endAlert.muted);
+}
 
 function timer(seconds) {
   // Hide start message
