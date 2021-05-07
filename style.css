@@ -134,6 +134,12 @@ input:hover {
   text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
+.display__late {
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
 .volume {
   position: absolute;
   left: 20px;

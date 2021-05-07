@@ -1,18 +1,21 @@
-let countdown;
+let countdown,
+  lateTime,
+  lateTotalSecs = 0,
+  lateHours,
+  lateMins,
+  lateSecs;
 const timerDisplay = document.querySelector('.display__time-left');
 const startMessageDisplay = document.querySelector('.display__start-message');
 const endTime = document.querySelector('.display__end-time');
+const lateBy = document.querySelector('.display__late');
 const buttons = document.querySelectorAll('[data-time]');
 const endAlert = new Audio('chime.mp3');
 const volumeOn = document.querySelector('.fa-volume-up');
 const volumeMute = document.querySelector('.fa-volume-mute');
 
 const style = getComputedStyle(volumeOn, null).display;
-// console.log(currentStyle);
 if (style == 'none') {
-  console.log('true');
   endAlert.muted = true;
-  // console.log(endAlert.muted);
 }
 
 function timer(seconds) {
@@ -20,6 +23,13 @@ function timer(seconds) {
   startMessageDisplay.style.display = 'none';
   // Clear any existing timer
   clearInterval(countdown);
+  // Clear existing late time countup timer
+  clearInterval(lateTime);
+  // Reset variables associated with late timer
+  (lateTotalSecs = 0), (lateHours = 0);
+  lateMins = 0;
+  lateSecs = 0;
+  lateBy.textContent = '';
   const initialTime = Date.now();
   // Seconds is multiplied by 1000 first (to convert to milliseconds)
   const stopTime = initialTime + seconds * 1000;
@@ -32,10 +42,26 @@ function timer(seconds) {
     if (secondsLeft < 0) {
       clearInterval(countdown);
       endAlert.play();
+      // Call immediately, then every one second using setInterval
+      displayLateTime();
+      lateTime = setInterval(displayLateTime, 1000);
       return;
     }
     displayTimeLeft(secondsLeft);
   }, 1000);
+}
+
+function displayLateTime() {
+  lateTotalSecs++;
+  let lateHours = Math.floor(lateTotalSecs / 3600);
+  let lateMins = Math.floor(lateTotalSecs / 60);
+  let lateSecs = lateTotalSecs - (lateHours * 3600 + lateMins * 60);
+  if (lateHours < 10) lateHours = '0' + lateHours;
+  if (lateMins < 10) lateMins = '0' + lateMins;
+  if (lateSecs < 10) lateSecs = '0' + lateSecs;
+  lateBy.textContent = `Late by ${
+    lateHours > 0 ? lateHours + ':' : ''
+  }${lateMins}:${lateSecs}`;
 }
 
 function displayTimeLeft(seconds) {
