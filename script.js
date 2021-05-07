@@ -1,9 +1,12 @@
 let countdown;
 const timerDisplay = document.querySelector('.display__time-left');
+const startMessageDisplay = document.querySelector('.display__start-message');
 const endTime = document.querySelector('.display__end-time');
 const buttons = document.querySelectorAll('[data-time]');
 
 function timer(seconds) {
+  // Hide start message
+  startMessageDisplay.style.display = 'none';
   // Clear any existing timer
   clearInterval(countdown);
   const initialTime = Date.now();
