@@ -1,4 +1,5 @@
 let countdown,
+  endsOrEnded = 'Ends',
   lateTime,
   lateTotalSecs = 0,
   lateHours,
@@ -26,9 +27,10 @@ function timer(seconds) {
   // Clear existing late time countup timer
   clearInterval(lateTime);
   // Reset variables associated with late timer
-  (lateTotalSecs = 0), (lateHours = 0);
-  lateMins = 0;
-  lateSecs = 0;
+  (lateTotalSecs = 0), (lateHours = 0), (lateMins = 0), (lateSecs = 0);
+  // Reset timer text to say 'ends' for end time
+  endsOrEnded = 'Ends';
+  // Change late time to display none
   lateBy.textContent = '';
   const initialTime = Date.now();
   // Seconds is multiplied by 1000 first (to convert to milliseconds)
@@ -45,6 +47,8 @@ function timer(seconds) {
       // Call immediately, then every one second using setInterval
       displayLateTime();
       lateTime = setInterval(displayLateTime, 1000);
+      endsOrEnded = 'Ended';
+      displayEndTime(stopTime);
       return;
     }
     displayTimeLeft(secondsLeft);
@@ -81,7 +85,7 @@ function displayEndTime(endTimestamp) {
   const hour = end.getHours();
   const adjustedHour = hour > 12 ? hour - 12 : hour;
   const minutes = end.getMinutes();
-  endTime.textContent = `Ends at ${adjustedHour}:${
+  endTime.textContent = `${endsOrEnded} at ${adjustedHour}:${
     minutes < 10 ? '0' : ''
   }${minutes}`;
 }
