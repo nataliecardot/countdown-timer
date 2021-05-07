@@ -3,6 +3,7 @@ const timerDisplay = document.querySelector('.display__time-left');
 const startMessageDisplay = document.querySelector('.display__start-message');
 const endTime = document.querySelector('.display__end-time');
 const buttons = document.querySelectorAll('[data-time]');
+const endAlert = new Audio('chime.mp3');
 
 function timer(seconds) {
   // Hide start message
@@ -20,6 +21,7 @@ function timer(seconds) {
     const secondsLeft = Math.round((stopTime - Date.now()) / 1000);
     if (secondsLeft < 0) {
       clearInterval(countdown);
+      endAlert.play();
       return;
     }
     displayTimeLeft(secondsLeft);
