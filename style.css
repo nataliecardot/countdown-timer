@@ -88,3 +88,15 @@ body {
   font-size: 4rem;
   color: white;
 }
+
+.volume {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.volume .fa-volume-up {
+  display: none;
+}

@@ -4,6 +4,14 @@ const startMessageDisplay = document.querySelector('.display__start-message');
 const endTime = document.querySelector('.display__end-time');
 const buttons = document.querySelectorAll('[data-time]');
 const endAlert = new Audio('chime.mp3');
+const volumeOn = document.querySelector('.fa-volume-up');
+const volumeMute = document.querySelector('.fa-volume-mute');
+
+// if (volumeOn.style.display == 'none') {
+//   console.log('true');
+//   endAlert.muted = true;
+// }
+endAlert.muted = true;
 
 function timer(seconds) {
   // Hide start message
@@ -65,3 +73,20 @@ document.customForm.addEventListener('submit', function (e) {
   timer(mins * 60);
   this.reset();
 });
+
+function mute() {
+  volumeMute.style.display = 'none';
+  volumeOn.style.display = 'inline';
+  endAlert.muted = !endAlert.muted;
+  console.log(endAlert.muted);
+}
+
+function soundOn() {
+  volumeOn.style.display = 'none';
+  volumeMute.style.display = 'inline';
+  endAlert.muted = !endAlert.muted;
+}
+
+volumeMute.addEventListener('click', mute);
+
+volumeOn.addEventListener('click', soundOn);

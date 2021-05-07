@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/0736fbfc73.js" crossorigin="anonymous" defer></script>
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="style.css">
   <title>Countdown Timer</title>
@@ -14,7 +15,7 @@
   <div class="timer">
     <!-- Conforms to BEM naming methodology http://getbem.com/naming/ -->
     <div class="timer__controls">
-      <button data-time="20" class="timer__button">20 secs</button>
+      <!-- <button data-time="5" class="timer__button">5 secs</button> -->
       <button data-time="300" class="timer__button">5 mins</button>
       <button data-time="900" class="timer__button">15 mins</button>
       <button data-time="1200" class="timer__button">20 mins</button>
@@ -28,6 +29,11 @@
       <h1 class="display__start-message">Select a timer or<br>enter custom minutes</h1>
       <p class="display__end-time"></p>
     </div>
+  </div>
+
+  <div class="volume">
+    <i class="fas fa-volume-up fa-5x"></i>
+    <i class="fas fa-volume-mute fa-5x"></i>
   </div>
 </body>
 
