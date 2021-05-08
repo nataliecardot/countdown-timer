@@ -1,7 +1,7 @@
 let countdown,
   endsOrEnded = 'Ends',
   lateTime,
-  lateTotalSecs = 0,
+  lateTotalSecs,
   lateHours,
   lateMins,
   lateSecs;
@@ -26,7 +26,7 @@ function startMode() {
   // Clear existing late time countup timer
   clearInterval(lateTime);
   // Reset variables associated with late timer
-  (lateTotalSecs = 0), (lateHours = 0), (lateMins = 0), (lateSecs = 0);
+  (lateTotalSecs = 4000), (lateHours = 0), (lateMins = 0), (lateSecs = 0);
   // Reset timer text to say 'ends' for end time
   endsOrEnded = 'Ends';
   lateBy.textContent = '';
@@ -64,14 +64,16 @@ function timer(seconds) {
 
 function displayLateTime() {
   lateTotalSecs++;
+  console.log(lateTotalSecs);
   let lateHours = Math.floor(lateTotalSecs / 3600);
-  let lateMins = Math.floor(lateTotalSecs / 60);
-  let lateSecs = lateTotalSecs - (lateHours * 3600 + lateMins * 60);
+  let remainderSecs = Math.floor(lateTotalSecs % 3600); // Secs left after hrs removed
+  let lateMins = Math.floor(remainderSecs / 60);
+  let lateSecs = remainderSecs % 60;
   if (lateHours < 10) lateHours = '0' + lateHours;
   if (lateMins < 10) lateMins = '0' + lateMins;
   if (lateSecs < 10) lateSecs = '0' + lateSecs;
   lateBy.textContent = `Late by ${
-    lateHours > 0 ? lateHours + ':' : ''
+    lateHours < 1 ? '' : lateHours + ':'
   }${lateMins}:${lateSecs}`;
 }
 
