@@ -64,7 +64,6 @@ function timer(seconds) {
 
 function displayLateTime() {
   lateTotalSecs++;
-  console.log(lateTotalSecs);
   let lateHours = Math.floor(lateTotalSecs / 3600);
   let remainderSecs = Math.floor(lateTotalSecs % 3600); // Secs left after hrs removed
   let lateMins = Math.floor(remainderSecs / 60);
@@ -123,7 +122,6 @@ function mute() {
   volumeMute.style.display = 'none';
   volumeOn.style.display = 'inline';
   endAlert.muted = !endAlert.muted;
-  console.log(endAlert.muted);
 }
 
 function soundOn() {

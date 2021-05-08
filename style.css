@@ -51,7 +51,7 @@ p {
 .timer__controls {
   display: flex;
   justify-content: space-around;
-  margin-top: 3rem;
+  margin: 3rem 3rem 0;
 }
 
 form {
@@ -159,7 +159,7 @@ input:hover {
   align-items: center;
 }
 
-.controls .fa-volume-up {
+.controls .fa-volume-mute {
   display: none;
 }
 
