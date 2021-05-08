@@ -1,3 +1,8 @@
+:root {
+  --default-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  --heavier-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+}
+
 html {
   box-sizing: border-box;
   font-size: 10px;
@@ -24,13 +29,17 @@ body {
   color: white;
 }
 
+h1,
+p {
+  text-shadow: var(--default-shadow);
+}
+
 .display__time-left {
   display: none;
   font-weight: 100;
   font-size: 20rem;
   margin: 0;
   color: white;
-  text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .timer {
@@ -42,7 +51,7 @@ body {
 .timer__controls {
   display: flex;
   justify-content: space-around;
-  margin-top: 15px;
+  margin-top: 3rem;
 }
 
 form {
@@ -72,7 +81,7 @@ form {
   box-sizing: border-box;
   text-align: center;
   caret-color: transparent;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--default-shadow);
   transition: 0.5s;
 }
 
@@ -85,7 +94,7 @@ input::placeholder {
 
 input:hover,
 input:focus {
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--heavier-shadow);
 }
 
 input:focus::placeholder {
@@ -106,7 +115,7 @@ input:focus {
   background: #fff;
   padding: 1rem;
   font-family: 'Inconsolata', monospace;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--default-shadow);
   transition: 0.5s;
 }
 
@@ -118,7 +127,7 @@ input:hover {
 .timer__button:hover,
 .timer__button:focus {
   outline: 0;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--heavier-shadow);
 }
 
 .display {
@@ -133,19 +142,17 @@ input:hover {
   display: none;
   font-size: 4rem;
   color: white;
-  text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .display__late {
   font-size: 3rem;
   color: white;
-  text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .controls {
   position: absolute;
-  left: 20px;
-  bottom: 20px;
+  left: 3rem;
+  bottom: 3rem;
   color: #fff;
   cursor: pointer;
   display: flex;
