@@ -142,14 +142,25 @@ input:hover {
   text-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-.volume {
+.controls {
   position: absolute;
   left: 20px;
   bottom: 20px;
   color: #fff;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-.volume .fa-volume-up {
+.controls .fa-volume-up {
   display: none;
+}
+
+.controls i {
+  margin-right: 2.25rem;
+  transition: 0.5s;
+}
+
+.controls i:hover {
+  transform: scale(1.03);
 }

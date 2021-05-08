@@ -13,15 +13,14 @@ const buttons = document.querySelectorAll('[data-time]');
 const endAlert = new Audio('chime.mp3');
 const volumeOn = document.querySelector('.fa-volume-up');
 const volumeMute = document.querySelector('.fa-volume-mute');
+const reset = document.querySelector('.fa-undo');
 
 const style = getComputedStyle(volumeOn, null).display;
 if (style == 'none') {
   endAlert.muted = true;
 }
 
-function timer(seconds) {
-  // Hide start message
-  startMessageDisplay.style.display = 'none';
+function startMode() {
   // Clear any existing timer
   clearInterval(countdown);
   // Clear existing late time countup timer
@@ -31,12 +30,21 @@ function timer(seconds) {
   // Reset timer text to say 'ends' for end time
   endsOrEnded = 'Ends';
   lateBy.textContent = '';
+  timerDisplay.textContent = '';
+  timerDisplay.style.display = 'none';
+  endTime.textContent = '';
+  endTime.style.display = 'none';
+}
+
+function timer(seconds) {
+  startMode();
+  // Hide start message
+  startMessageDisplay.style.display = 'none';
   const initialTime = Date.now();
   // Seconds is multiplied by 1000 first (to convert to milliseconds)
   const stopTime = initialTime + seconds * 1000;
   displayTimeLeft(seconds);
   displayEndTime(stopTime);
-
   countdown = setInterval(() => {
     // Taking initial time with 60 seconds added. When timer begins and this runs every second, Date.now() will increase, meaning difference between stopTime and new current time will decrease, and each second, updated difference is displayed until seconds remaining is 0
     const secondsLeft = Math.round((stopTime - Date.now()) / 1000);
@@ -122,6 +130,13 @@ function soundOn() {
   endAlert.muted = !endAlert.muted;
 }
 
+function freshReset() {
+  startMode();
+  startMessageDisplay.style.display = 'block';
+}
+
 volumeMute.addEventListener('click', mute);
 
 volumeOn.addEventListener('click', soundOn);
+
+reset.addEventListener('click', freshReset);
